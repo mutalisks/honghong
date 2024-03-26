@@ -31,8 +31,10 @@ export async function chatAndMessage(theme:string, newMessage:string) {
     scene: theme,
   }
 
+  const newTheme = theme.replaceAll("你", "用户");
+
   if(chatTimes === 0){
-    memory.saveContext({input: "生气的原因:" + theme},{output:"哼"});
+    memory.saveContext({input: "生气的原因:" + newTheme},{output:"哼"});
   }
   try{
     const response = await chain.invoke(paramsTest) as AIReply;

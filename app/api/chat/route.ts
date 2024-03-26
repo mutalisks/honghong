@@ -16,8 +16,8 @@ export async function POST(req: Request) {
       const result = await chatAndMessage(scene, newMessage) as AIReply;
       const ans = "(" + result.emotion + ")" + result.reply;
       const jsonString = JSON.stringify({reply: ans, emotion:result.emotion, points:result.points});
-      const stream = stringToReadableStream(jsonString);
-      return new Response(stream, 
+      console.log(jsonString);
+      return new Response(jsonString, 
         { status: 200, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }) 
     } catch (error: any) {
       const errorMessage = error.message
@@ -33,15 +33,6 @@ export async function POST(req: Request) {
         },
       }), { status: 500 })
     }
-}
-
-export function stringToReadableStream(str:string) {
-  return new ReadableStream({
-    start(controller) {
-      controller.enqueue(new TextEncoder().encode(str));
-      controller.close();
-    }
-  });
 }
 
 
