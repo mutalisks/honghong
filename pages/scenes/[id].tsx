@@ -141,7 +141,7 @@ const Scene = () => {
             required
             rows={1}
             autoFocus
-            placeholder="Send a message"
+            placeholder="快！哄哄女朋友！！"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {

@@ -26,7 +26,7 @@ export default function Home() {
               HongHong
             </h1>
             <p className="text-gray-500">
-              HongHong Japanese Version
+              HongHong Chinese Version
             </p>
           </div>
           <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
