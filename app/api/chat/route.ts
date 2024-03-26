@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       const result = await chatAndMessage(scene, newMessage) as AIReply;
       const ans = "(" + result.emotion + ")" + result.reply;
       const jsonString = JSON.stringify({reply: ans, emotion:result.emotion, points:result.points});
-      console.log(jsonString);
+      // console.log(jsonString);
       return new Response(jsonString, 
         { status: 200, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }) 
     } catch (error: any) {

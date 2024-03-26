@@ -22,6 +22,7 @@ const Scene = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [score, setScore] = useState(20);
   const [showModal, setShowModal] = useState(false);
+  let point = 0;
   
   const { messages, input, setInput, handleSubmit, isLoading} = useChat({
     body:{
@@ -32,15 +33,16 @@ const Scene = () => {
     },
     onFinish: (message) => {
       const data = JSON.parse(message.content) as AIReply;
-      setScore((prevScore) => prevScore + Number(data.points));
+      point = Number(data.points);
+      setScore((prevScore) => prevScore + point);
     },
   });
   const disabled = isLoading || input.length === 0;
   useEffect(() => {
     if (score === 0 || score === 100) {
-      setShowModal(true); // 当进度为 0 或 100 时显示模态
+      setShowModal(true); 
     } else {
-      setShowModal(false); // 否则不显示
+      setShowModal(false); 
     }
   }, [score]);
   
@@ -111,6 +113,13 @@ const Scene = () => {
                   </div>
                   <div className="prose prose-p:leading-relaxed mt-1 w-full break-words">
                     {message.role ==="assistant"? JSON.parse(message.content).reply:message.content}
+                    {
+                      message.role === "assistant"? (
+                        <div className='inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-blue-600/100'>
+                          原谅值{point > 0? +point:point}
+                        </div>
+                      ):null
+                    }
                   </div>
                 </div>
               </div>
