@@ -43,6 +43,14 @@ function AlertModal({ isOpen, message, onClose }: ModalProps) {
           padding: 20px;
           border-radius: 5px;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          width: 50%; /* 或固定大小，如 600px */
+          height: 50%; /* 或固定大小，如 400px */
+          position: relative; /* 为内部元素的绝对定位提供参考 */
+        }
+        .button-container {
+          position: absolute;
+          bottom: 20px;
+          right: 20px;
         }
       `}</style>
     </div>

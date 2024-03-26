@@ -22,7 +22,7 @@ const Scene = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [score, setScore] = useState(20);
   const [showModal, setShowModal] = useState(false);
-  let point = 0;
+  const [points, setPoints] = useState<number[]>([]);
   
   const { messages, input, setInput, handleSubmit, isLoading} = useChat({
     body:{
@@ -33,8 +33,8 @@ const Scene = () => {
     },
     onFinish: (message) => {
       const data = JSON.parse(message.content) as AIReply;
-      point = Number(data.points);
-      setScore((prevScore) => prevScore + point);
+      setPoints(prevPoints => [...prevPoints, Number(data.points)]);
+      setScore((prevScore) => prevScore + Number(data.points));
     },
   });
   const disabled = isLoading || input.length === 0;
@@ -45,6 +45,8 @@ const Scene = () => {
       setShowModal(false); 
     }
   }, [score]);
+
+  const curPoint = points[points.length-1];
   
   return (
     <main className="flex flex-col items-center justify-between pb-40">
@@ -113,14 +115,15 @@ const Scene = () => {
                   </div>
                   <div className="prose prose-p:leading-relaxed mt-1 w-full break-words">
                     {message.role ==="assistant"? JSON.parse(message.content).reply:message.content}
-                    {
+                  </div>
+                  {
                       message.role === "assistant"? (
-                        <div className='inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-blue-600/100'>
-                          原谅值{point > 0? +point:point}
+                        <div className='inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors 
+                        focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-blue-600/100 whitespace-nowrap'>
+                          原谅值{curPoint >0? +curPoint:curPoint}
                         </div>
                       ):null
-                    }
-                  </div>
+                  }
                 </div>
               </div>
             )

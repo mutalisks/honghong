@@ -30,20 +30,15 @@ export async function chatAndMessage(theme:string, newMessage:string) {
     input: newMessage,
     scene: newTheme,
   }
-  console.log(paramsTest);
 
-  if(chatTimes === 0){
-    memory.saveContext({input: "生气的原因:" + newTheme},{output:"哼"});
-  }
   try{
-    
     const response = await chain.invoke(paramsTest) as AIReply;
     chatTimes += 1;
     await memory.saveContext(
       {input: paramsTest.input}, 
       {output: response.reply}
     );
-    console.log(await memory.loadMemoryVariables({}));
+    // console.log(await memory.loadMemoryVariables({}));
     return response;
   }catch (error) {
     console.log('error: ', error)
