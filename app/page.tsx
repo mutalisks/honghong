@@ -1,14 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-
-const examples = [
-  {text: "你回家太晚,女朋友很生气", id:1},
-  {text: "你炒股亏了20万,被对象发现了", id:2},
-  {text: "女朋友吃胖了,你想和她一起减肥ᕙ(`▿´)ᕗ,然后就生气了", id:3},
-  {text: "你在厕所拉屎,女朋友也在闹肚子，但只有一个马桶,最后女朋友拉在裤兜子里了,她很生气", id:4},
-  {text: "女友来例假，疼的死去活来，你却让她多喝热水", id:5},
-];
+import { scenes } from "@/constants";
 
 export default function Home() {
   return (
@@ -30,8 +23,8 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
-            {examples.map((example) => (
-              <Link key={example.id} href={`/scenes/${encodeURIComponent(example.id)}?text=${encodeURIComponent(example.text)}`} passHref>
+            {scenes.map((example) => (
+              <Link key={example.id} href={`/scenes/${encodeURIComponent(example.id)}}`} passHref>
                 <p className="rounded-md border border-gray-200 bg-white px-5 py-3 text-left text-sm text-gray-500 transition-all duration-75 hover:border-black hover:text-gray-700 active:bg-gray-50">
                     {example.text}
                 </p>

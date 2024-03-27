@@ -13,20 +13,20 @@ import Image from "next/image";
 import React, { useState, useEffect } from 'react';
 import { AIReply } from '@/types';
 import AlertModal from '@/components/alertModal';
-
+import { scenes } from "@/constants";
 
 const Scene = () => {
   const router = useRouter();
-  const { text } = router.query; 
+  const { sceneId } = router.query; 
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [score, setScore] = useState(20);
   const [showModal, setShowModal] = useState(false);
   const [points, setPoints] = useState<number[]>([]);
-  
+  const theme = scenes.find(scene => scene.id === Number(sceneId))?.text;
   const { messages, input, setInput, handleSubmit, isLoading} = useChat({
     body:{
-      scene:text,
+      scene:theme,
     },
     onError: (err: Error) => {
       console.log('err', err)
@@ -53,7 +53,7 @@ const Scene = () => {
       <div className='border-gray-200 sm:mx-0 m-4 max-w-screen-md rounded-md border sm:w-full'>
         <div className='flex flex-col space-y-2 p-7 sm:p-2'>
           <h1 className="flex justify-between items-center font-semibold text-black">
-          场景: {text}
+          场景: {theme}
           </h1>
           <div className='w-full'>
           <div className='flex w-full items-center justify-between mb-2'>
