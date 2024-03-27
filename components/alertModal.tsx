@@ -22,7 +22,9 @@ function AlertModal({ isOpen, message, onClose }: ModalProps) {
     <div className="modal-backdrop">
       <div className="modal-content">
         <p>{message}</p>
-        <button onClick={handleGoHome}>返回主页</button>
+        <div className="button-container">
+          <button onClick={handleGoHome}>返回主页</button>
+        </div>
       </div>
 
       <style jsx>{`
@@ -43,9 +45,9 @@ function AlertModal({ isOpen, message, onClose }: ModalProps) {
           padding: 20px;
           border-radius: 5px;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-          width: 50%; /* 或固定大小，如 600px */
-          height: 50%; /* 或固定大小，如 400px */
-          position: relative; /* 为内部元素的绝对定位提供参考 */
+          width: 30%; 
+          height: 30%; 
+          position: relative; 
         }
         .button-container {
           position: absolute;

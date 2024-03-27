@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import { useRef } from "react";
-import { useChat } from "ai/react";
+import { useCallback, useRef } from "react";
+import { Message, useChat } from "ai/react";
 import {
   UserIcon,
   LoadingCircle,
@@ -45,8 +45,6 @@ const Scene = () => {
       setShowModal(false); 
     }
   }, [score]);
-
-  const curPoint = points[points.length-1];
   
   return (
     <main className="flex flex-col items-center justify-between pb-40">
@@ -117,10 +115,10 @@ const Scene = () => {
                     {message.role ==="assistant"? JSON.parse(message.content).reply:message.content}
                   </div>
                   {
-                      message.role === "assistant"? (
+                        message.role === "assistant"? (
                         <div className='inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors 
                         focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-blue-600/100 whitespace-nowrap'>
-                          原谅值{curPoint >0? +curPoint:curPoint}
+                          原谅值{points[Math.floor(i/2)] > 0?`+${points[Math.floor(i/2)]}`:points[Math.floor(i/2)]}
                         </div>
                       ):null
                   }

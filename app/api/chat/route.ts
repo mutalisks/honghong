@@ -6,7 +6,7 @@ export const runtime = 'edge';
 
 export async function POST(req: Request) {
     const { messages, scene } = await req.json();
-    console.log(scene);
+    // console.log(messages);
     const resetMessage = messages.map((msg:any) => ({
       role: msg.role === 'assistant' ? 'model' : 'user',
       content: msg.content
