@@ -23,10 +23,10 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
-            {scenes.map((example) => (
-              <Link key={example.id} href={`/scenes/${encodeURIComponent(example.id)}}`} passHref>
+            {scenes.map((scene) => (
+              <Link key={scene.id} href={`/scenes/${encodeURIComponent(scene.id)}`} passHref>
                 <p className="rounded-md border border-gray-200 bg-white px-5 py-3 text-left text-sm text-gray-500 transition-all duration-75 hover:border-black hover:text-gray-700 active:bg-gray-50">
-                    {example.text}
+                    {scene.text}
                 </p>
               </Link>
             ))}

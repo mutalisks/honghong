@@ -17,13 +17,13 @@ import { scenes } from "@/constants";
 
 const Scene = () => {
   const router = useRouter();
-  const { sceneId } = router.query; 
+  const { id } = router.query; 
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [score, setScore] = useState(20);
   const [showModal, setShowModal] = useState(false);
   const [points, setPoints] = useState<number[]>([]);
-  const theme = scenes.find(scene => scene.id === Number(sceneId))?.text;
+  const theme = scenes.find(scene => scene.id === Number(id))?.text;
   const { messages, input, setInput, handleSubmit, isLoading} = useChat({
     body:{
       scene:theme,
