@@ -39,7 +39,7 @@ const Scene = () => {
   });
   const disabled = isLoading || input.length === 0;
   useEffect(() => {
-    if (score === 0 || score === 100) {
+    if (score <= 0 || score >= 100) {
       setShowModal(true); 
     } else {
       setShowModal(false); 

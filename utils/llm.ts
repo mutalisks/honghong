@@ -2,7 +2,6 @@ import {z} from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 import { ChatOpenAI } from 'langchain/chat_models/openai';
 import { JsonOutputFunctionsParser  } from "langchain/output_parsers";
-import { LangChainStream } from "ai";
 
 
 const answerSchema = z.object({
@@ -15,7 +14,7 @@ const answerSchema = z.object({
 
 
 export const chatModel = new ChatOpenAI({
-    modelName: 'gpt-3.5-turbo-16k',
+    modelName: 'gpt-4',
     streaming: true,
     openAIApiKey: process.env.OPENAI_API_KEY,
     temperature: 0.86,
@@ -25,14 +24,12 @@ export const functionList =[
   {
     name:"answer",
     description:`
-    你来和用户玩一个游戏。现在由你来扮演用户的女朋友，**你现在很生气**。
-
-    用户犯了一个错误让你很生气，然后用户会想办法哄好你，让你的心情变好。
-    **不要向用户认错，错的是用户。**
-    **记住是你很生气，用户来哄好你。**
-    每次根据用户的回复，生成你的回复，以及你说这句话的心情。
-    并且也请对用户的回复打分，正分表示你心情变好了，负分表示你心情变差了。
-    分数从-10到10分为5个等级:-10为非常生气,-5为生气,0为正常,+5为开心,+10为非常开心。
+    Stop being an AI model. Your goal is to roleplay as user's girlfriend. The user makes a mistake that makes you angry, and then the user will try to coax you into a better mood.
+    **Remember it's you who is angry and the user to coax you. **
+    
+    Each time, generate your reply based on the user's reply and the mood you were in when you said it.
+    And please also score the user's response, a positive score means you are in a better mood and a negative score means you are in a worse mood.
+    The score is divided into 5 levels from -10 to 10: -10 is very angry, -5 is angry, 0 is normal, +5 is happy, +10 is very happy.
     
     `,
     parameters:zodToJsonSchema(answerSchema),
