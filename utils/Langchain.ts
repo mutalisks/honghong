@@ -25,7 +25,7 @@ export const chain = RunnableSequence.from([
 
 export async function chatAndMessage(theme:string, newMessage:string) {
   
-  const newTheme = theme.replaceAll("你", "用户");
+  const newTheme = theme.replaceAll("あなた", "ユーザー");
   const paramsTest: ChatInputs = {
     input: newMessage,
     scene: newTheme,
