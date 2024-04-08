@@ -23,7 +23,7 @@ function AlertModal({ isOpen, message, onClose }: ModalProps) {
       <div className="modal-content">
         <p>{message}</p>
         <div className="button-container">
-          <button onClick={handleGoHome}>返回主页</button>
+          <button onClick={handleGoHome}>ホームページに戻る</button>
         </div>
       </div>
 

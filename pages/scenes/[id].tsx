@@ -51,15 +51,15 @@ const Scene = () => {
       <div className='border-gray-200 sm:mx-0 m-4 max-w-screen-md rounded-md border sm:w-full'>
         <div className='flex flex-col space-y-2 p-7 sm:p-2'>
           <h1 className="flex justify-between items-center font-semibold text-black">
-          场景: {theme}
+          シーン: {theme}
           </h1>
           <div className='w-full'>
           <div className='flex w-full items-center justify-between mb-2'>
-            <span className='text-sm text-gray-500'>原谅值</span>
+            <span className='text-sm text-gray-500'>好感度</span>
             <span className='text-sm font-semibold'>{score}/100</span>
             <AlertModal
               isOpen={showModal}
-              message={score === 100 ? "哄哄成功，TA和你重归于好啦" : "哄哄失败，TA离你而去了"}
+              message={score >= 100 ? "彼女とあなたはまた仲良くなりました" : "彼女とあなたから離れていきました"}
               onClose={() => setShowModal(false)}
             />
           </div>
@@ -80,7 +80,7 @@ const Scene = () => {
               />
             </div>
             <div className="prose prose-p:leading-relaxed mt-1 w-full break-words">
-              哼
+              怒った!!
             </div>
           </div>
       </div>
@@ -118,7 +118,7 @@ const Scene = () => {
                         message.role === "assistant"? (
                         <div className='inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors 
                         focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-blue-600/100 whitespace-nowrap'>
-                          原谅值{points[Math.floor(i/2)] > 0?`+${points[Math.floor(i/2)]}`:points[Math.floor(i/2)]}
+                          好感度{points[Math.floor(i/2)] > 0?`+${points[Math.floor(i/2)]}`:points[Math.floor(i/2)]}
                         </div>
                       ):null
                   }
@@ -139,7 +139,7 @@ const Scene = () => {
             required
             rows={1}
             autoFocus
-            placeholder="快！哄哄女朋友！！"
+            placeholder="急いで！彼女をなだめて！"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {

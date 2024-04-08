@@ -5,11 +5,11 @@ import { JsonOutputFunctionsParser  } from "langchain/output_parsers";
 
 
 const answerSchema = z.object({
-  reply: z.string().describe("根据输入，生成的回复。"),
-  emotion: z.string().describe("回复时的心情"),
+  reply: z.string().describe("入力に基づき回答を生成"),
+  emotion: z.string().describe("返信時の気分"),
   points: z
     .union([z.literal(-10), z.literal(-5), z.literal(0), z.literal(5), z.literal(10)])
-    .describe("回复的得分"),
+    .describe("回答スコア"),
 });
 
 
