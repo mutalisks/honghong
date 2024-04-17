@@ -38,7 +38,6 @@ export async function chatAndMessage(theme:string, newMessage:string) {
       {input: paramsTest.input}, 
       {output: response.reply}
     );
-    // console.log(await memory.loadMemoryVariables({}));
     return response;
   }catch (error) {
     console.log('error: ', error)

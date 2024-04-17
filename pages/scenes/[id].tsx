@@ -146,6 +146,7 @@ const Scene = () => {
               if (e.key === "Enter" && !e.shiftKey) {
                 formRef.current?.requestSubmit();
                 e.preventDefault();
+                setInput("");
               }
             }}
             spellCheck={false}
