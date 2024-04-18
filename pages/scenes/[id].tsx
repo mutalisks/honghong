@@ -143,10 +143,9 @@ const Scene = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
+              if (e.key === "Enter" && e.shiftKey) {
                 formRef.current?.requestSubmit();
                 e.preventDefault();
-                setInput("");
               }
             }}
             spellCheck={false}
